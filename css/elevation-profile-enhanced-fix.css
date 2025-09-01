@@ -1,0 +1,214 @@
+/* Enhanced Elevation Profile Fix - Remove Grey Background & Stretch Height 10% */
+
+/* Target the elevation profile container and remove grey background */
+.trail-item,
+.trail-info-card,
+.trail-card {
+    /* Remove grey background */
+    background: transparent !important;
+    background-color: transparent !important;
+    
+    /* Ensure no border or shadow that might appear grey */
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Specific targeting for elevation profile images */
+.trail-item img[src*="elevation"],
+.trail-item img[alt*="Elevation"],
+.trail-item img[alt*="elevation"],
+img[src*="elevation"],
+img[alt*="Elevation"],
+img[alt*="elevation"] {
+    /* Remove any grey background from images */
+    background: transparent !important;
+    background-color: transparent !important;
+    
+    /* Stretch height by 10% while maintaining aspect ratio */
+    max-width: 100%;
+    height: auto;
+    width: auto;
+    
+    /* Increase height by 10% */
+    transform: scaleY(1.1);
+    transform-origin: center;
+    
+    /* Ensure proper aspect ratio preservation */
+    object-fit: contain;
+    object-position: center;
+    
+    /* Add explicit constraints for mobile with 10% height increase */
+    max-height: 330px; /* Was 300px, now 330px (10% increase) */
+    
+    /* Center the image */
+    display: block;
+    margin: 10px auto;
+    
+    /* Smooth transitions */
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    
+    /* Remove any border or outline */
+    border: none !important;
+    outline: none !important;
+}
+
+/* Mobile-specific fixes for Android devices */
+@media screen and (max-width: 768px) {
+    .trail-item img[src*="elevation"],
+    .trail-item img[alt*="Elevation"],
+    .trail-item img[alt*="elevation"],
+    img[src*="elevation"],
+    img[alt*="Elevation"],
+    img[alt*="elevation"] {
+        /* More restrictive sizing on mobile with 10% height increase */
+        max-width: 95%;
+        max-height: 275px; /* Was 250px, now 275px (10% increase) */
+        
+        /* Stretch height by 10% */
+        transform: scaleY(1.1);
+        
+        /* Ensure proper scaling */
+        width: auto !important;
+        height: auto !important;
+        
+        /* Force aspect ratio preservation */
+        object-fit: contain;
+        
+        /* Additional margin for mobile */
+        margin: 15px auto;
+        
+        /* Prevent any potential stretching */
+        flex-shrink: 0;
+        
+        /* Remove grey background */
+        background: transparent !important;
+    }
+}
+
+/* Extra small mobile devices */
+@media screen and (max-width: 480px) {
+    .trail-item img[src*="elevation"],
+    .trail-item img[alt*="Elevation"],
+    .trail-item img[alt*="elevation"],
+    img[src*="elevation"],
+    img[alt*="Elevation"],
+    img[alt*="elevation"] {
+        max-width: 90%;
+        max-height: 220px; /* Was 200px, now 220px (10% increase) */
+        margin: 12px auto;
+        transform: scaleY(1.1);
+        background: transparent !important;
+    }
+}
+
+/* Specific fix for WebView rendering issues on Android */
+@media screen and (-webkit-min-device-pixel-ratio: 1) {
+    .trail-item img[src*="elevation"],
+    .trail-item img[alt*="Elevation"],
+    .trail-item img[alt*="elevation"],
+    img[src*="elevation"],
+    img[alt*="Elevation"],
+    img[alt*="elevation"] {
+        /* Force proper rendering in Android WebView */
+        -webkit-transform: translateZ(0) scaleY(1.1);
+        transform: translateZ(0) scaleY(1.1);
+        
+        /* Ensure proper scaling */
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+        
+        /* Remove grey background */
+        background: transparent !important;
+    }
+}
+
+/* Container fixes to prevent grey background and stretching */
+.trail-item {
+    /* Remove grey background from container */
+    background: transparent !important;
+    background-color: transparent !important;
+    
+    /* Ensure container doesn't force image stretching */
+    overflow: visible; /* Changed from hidden to visible for transform */
+    
+    /* Proper flex behavior */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    /* Remove any borders or shadows */
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.trail-item > * {
+    /* Prevent child elements from stretching */
+    flex-shrink: 0;
+    width: 100%;
+    text-align: left;
+}
+
+.trail-item img {
+    /* Override any inherited width settings */
+    width: auto !important;
+    text-align: center;
+    
+    /* Remove grey background */
+    background: transparent !important;
+}
+
+/* Target any potential grey background containers */
+.trail-info,
+.trail-details,
+.elevation-container,
+.elevation-profile {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Fallback for older Android browsers */
+@supports not (object-fit: contain) {
+    .trail-item img[src*="elevation"],
+    .trail-item img[alt*="Elevation"],
+    .trail-item img[alt*="elevation"],
+    img[src*="elevation"],
+    img[alt*="Elevation"],
+    img[alt*="elevation"] {
+        /* Fallback for browsers without object-fit support */
+        max-width: 100%;
+        height: auto;
+        width: auto;
+        background: transparent !important;
+        transform: scaleY(1.1);
+    }
+}
+
+/* Additional targeting for any grey backgrounds in trail cards */
+div[class*="trail"],
+section[class*="trail"],
+article[class*="trail"] {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* Ensure elevation images are properly styled */
+img[src*="ram-pump"],
+img[src*="elevation-profile"],
+img[src*="trail-elevation"] {
+    background: transparent !important;
+    background-color: transparent !important;
+    transform: scaleY(1.1);
+    max-height: 330px;
+}
+
+@media screen and (max-width: 768px) {
+    img[src*="ram-pump"],
+    img[src*="elevation-profile"],
+    img[src*="trail-elevation"] {
+        max-height: 275px;
+        transform: scaleY(1.1);
+    }
+}
+

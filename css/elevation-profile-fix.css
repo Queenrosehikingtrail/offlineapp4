@@ -1,0 +1,112 @@
+/* Elevation Profile Fix for Android Mobile Devices */
+
+/* Fix for elevation profile images to prevent stretching */
+.trail-item img[src*="elevation"],
+.trail-item img[alt*="Elevation"],
+.trail-item img[alt*="elevation"] {
+    /* Prevent stretching by maintaining aspect ratio */
+    max-width: 100%;
+    height: auto;
+    width: auto;
+    
+    /* Ensure proper aspect ratio preservation */
+    object-fit: contain;
+    object-position: center;
+    
+    /* Add explicit constraints for mobile */
+    max-height: 300px;
+    
+    /* Center the image */
+    display: block;
+    margin: 10px auto;
+    
+    /* Smooth transitions */
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Mobile-specific fixes for Android devices */
+@media screen and (max-width: 768px) {
+    .trail-item img[src*="elevation"],
+    .trail-item img[alt*="Elevation"],
+    .trail-item img[alt*="elevation"] {
+        /* More restrictive sizing on mobile */
+        max-width: 95%;
+        max-height: 250px;
+        
+        /* Ensure proper scaling */
+        width: auto !important;
+        height: auto !important;
+        
+        /* Force aspect ratio preservation */
+        object-fit: contain;
+        
+        /* Additional margin for mobile */
+        margin: 15px auto;
+        
+        /* Prevent any potential stretching */
+        flex-shrink: 0;
+    }
+}
+
+/* Extra small mobile devices */
+@media screen and (max-width: 480px) {
+    .trail-item img[src*="elevation"],
+    .trail-item img[alt*="Elevation"],
+    .trail-item img[alt*="elevation"] {
+        max-width: 90%;
+        max-height: 200px;
+        margin: 12px auto;
+    }
+}
+
+/* Specific fix for WebView rendering issues on Android */
+@media screen and (-webkit-min-device-pixel-ratio: 1) {
+    .trail-item img[src*="elevation"],
+    .trail-item img[alt*="Elevation"],
+    .trail-item img[alt*="elevation"] {
+        /* Force proper rendering in Android WebView */
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+        
+        /* Ensure proper scaling */
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Container fixes to prevent stretching */
+.trail-item {
+    /* Ensure container doesn't force image stretching */
+    overflow: hidden;
+    
+    /* Proper flex behavior */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.trail-item > * {
+    /* Prevent child elements from stretching */
+    flex-shrink: 0;
+    width: 100%;
+    text-align: left;
+}
+
+.trail-item img {
+    /* Override any inherited width settings */
+    width: auto !important;
+    text-align: center;
+}
+
+/* Fallback for older Android browsers */
+@supports not (object-fit: contain) {
+    .trail-item img[src*="elevation"],
+    .trail-item img[alt*="Elevation"],
+    .trail-item img[alt*="elevation"] {
+        /* Fallback for browsers without object-fit support */
+        max-width: 100%;
+        height: auto;
+        width: auto;
+    }
+}
+
